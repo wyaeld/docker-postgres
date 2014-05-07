@@ -2,11 +2,12 @@
 # modified from the example Dockerfile from
 # http://docs.docker.io/en/latest/examples/postgresql_service/
 #
-# - fixed locale to UTF8 instead of C
+# - fixed locale to UTF8 instead of C.  (jeremy@transcriptic.com)
+# - further modified to pin to 12.04, and timestamp the update (wyaeld@gmail.com)
 #
 
-FROM ubuntu
-MAINTAINER jeremy@transcriptic.com
+FROM ubuntu:12.04
+MAINTAINER wyaeld@gmail.com
 
 # Add the PostgreSQL PGP key to verify their Debian packages.
 # It should be the same key as https://www.postgresql.org/media/keys/ACCC4CF8.asc 
@@ -17,7 +18,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B97B0AFCAA1A47F044F
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 # Update the Ubuntu and PostgreSQL repository indexes
-RUN apt-get update
+RUN apt-get update # Thu May  8 10:47:26 NZST 2014
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -qy install language-pack-en
 
